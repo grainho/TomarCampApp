@@ -14,7 +14,7 @@ namespace TomarCampApp.Models
             ListaDeObjetosDeActFun = new HashSet<ActFun>();
         }
 
-        public int Id { get; set; }
+        public int ID { get; set; }
 
         public DateTime dataComeco { get; set; }
 

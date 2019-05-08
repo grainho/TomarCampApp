@@ -9,7 +9,7 @@ namespace TomarCampApp.Models
     public class ActCri
     {
 
-        public int Id { get; set; }
+        public int ID { get; set; }
 
         // atributos específicos do relacionamento
         public int AtributoDoRelacionamento1 { get; set; }
