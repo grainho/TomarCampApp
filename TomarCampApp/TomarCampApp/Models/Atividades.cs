@@ -7,5 +7,27 @@ namespace TomarCampApp.Models
 {
     public class Atividades
     {
+
+        public Atividades()
+        {
+            ListaDeObjetosDeActCri = new HashSet<ActCri>();
+            ListaDeObjetosDeActFun = new HashSet<ActFun>();
+        }
+
+        public int Id { get; set; }
+
+        public DateTime dataComeco { get; set; }
+
+        public DateTime dataFim { get; set; }
+
+        public string materiais { get; set; }
+
+        public string descricao { get; set; }
+
+
+
+        public virtual ICollection<ActCri> ListaDeObjetosDeActCri { get; set; }
+
+        public virtual ICollection<ActFun> ListaDeObjetosDeActFun { get; set; }
     }
 }
