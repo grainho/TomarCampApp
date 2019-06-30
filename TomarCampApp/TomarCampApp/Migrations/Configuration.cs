@@ -5,14 +5,14 @@ namespace TomarCampApp.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<TomarCampApp.Models.TomarCampAppDB>
+    internal sealed class Configuration : DbMigrationsConfiguration<TomarCampApp.Models.ApplicationDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(TomarCampApp.Models.TomarCampAppDB context)
+        protected override void Seed(TomarCampApp.Models.ApplicationDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 
