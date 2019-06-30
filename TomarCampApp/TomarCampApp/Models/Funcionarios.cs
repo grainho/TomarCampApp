@@ -11,19 +11,19 @@ namespace TomarCampApp.Models
 
         public Funcionarios()
         {
-            ListaDeObjetosDeActFun = new HashSet<ActFun>();
+            ListaDeObjetosDeConcretizacao = new HashSet<Concretizacao>();
+
+
         }
 
         public int ID { get; set; }
 
         public string Nome { get; set; }
 
-        public string Password { get; set; }
-
         public string Foto { get; set; }
 
-        public virtual ICollection<Pais> PaisInscritos { get; set; }
 
-        public virtual ICollection<ActFun> ListaDeObjetosDeActFun { get; set; }
+
+        public virtual ICollection<Concretizacao> ListaDeObjetosDeConcretizacao { get; set; }
     }
 }

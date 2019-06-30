@@ -11,29 +11,29 @@ namespace TomarCampApp.Models
 
         public Criancas()
         {
-            ListaDeObjetosDeActCri = new HashSet<ActCri>();
+            ListaDeObjetosDePlanoDeAtividades = new HashSet<PlanoDeAtividades>();
+
+
         }
 
-        public int ID { get; set; }
+        public int Id { get; set; }
 
         public string Nome { get; set; }
 
         public int Idade { get; set; }
 
+        public string Doencas { get; set; }
+
         public string NumCC { get; set; }
 
         public string NIF { get; set; }
 
-        public DateTime DataNascimento { get; set; }
 
-        public string Doencas { get; set; }
+        [ForeignKey("Pai")]
+        public int PaiFK { get; set; }
+        public Pais Pai { get; set; }
 
 
-        [ForeignKey("Paisfk")]
-        public Pais Pais { get; set; }
-        public int Paisfk { get; set; }
-        
-
-        public virtual ICollection<ActCri> ListaDeObjetosDeActCri { get; set; }
+        public virtual ICollection<PlanoDeAtividades> ListaDeObjetosDePlanoDeAtividades { get; set; }
     }
 }

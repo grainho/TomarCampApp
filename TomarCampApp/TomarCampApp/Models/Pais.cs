@@ -9,6 +9,13 @@ namespace TomarCampApp.Models
     public class Pais
     {
 
+        public Pais()
+        {
+            ListaDeObjetosDeCriancas = new HashSet<Criancas>();
+
+
+        }
+
         public int ID { get; set; }
 
         public string Nome { get; set; }
@@ -21,18 +28,10 @@ namespace TomarCampApp.Models
 
         public string Telemovel { get; set; }
 
-        public DateTime DataNascimento { get; set; }
-
         public string Email { get; set; }
 
-        public string Password { get; set; }
 
-        [ForeignKey("Funcionariosfk")]
-        public Funcionarios Funcionarios { get; set; }
-        public int Funcionariosfk { get; set; }
-        
-
-        public virtual ICollection<Criancas> CriancasAtribuidas { get; set; }
+        public virtual ICollection<Criancas> ListaDeObjetosDeCriancas { get; set; }
 
     }
 }

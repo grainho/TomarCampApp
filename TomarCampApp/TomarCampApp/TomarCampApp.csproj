@@ -104,12 +104,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\ActCri.cs" />
-    <Compile Include="Models\ActFun.cs" />
     <Compile Include="Models\Atividades.cs" />
+    <Compile Include="Models\Concretizacao.cs" />
     <Compile Include="Models\Criancas.cs" />
     <Compile Include="Models\Funcionarios.cs" />
     <Compile Include="Models\Pais.cs" />
+    <Compile Include="Models\PlanoDeAtividades.cs" />
     <Compile Include="Models\TomarCampAppDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
