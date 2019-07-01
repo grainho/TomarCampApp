@@ -14,7 +14,7 @@ namespace TomarCampApp.Models
 
         }
 
-        public int Id { get; set; }
+        public int ID { get; set; }
 
         public char Turno { get; set; }
 
