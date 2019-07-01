@@ -17,6 +17,8 @@ namespace TomarCampApp.Models
 
         public int Id { get; set; }
 
+        public string Nome { get; set; }
+
         public DateTime dataCriacao { get; set; }
 
         public string materiais { get; set; }
