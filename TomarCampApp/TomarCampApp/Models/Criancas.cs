@@ -31,7 +31,7 @@ namespace TomarCampApp.Models
 
         [ForeignKey("Pai")]
         public int PaiFK { get; set; }
-        public Pais Pai { get; set; }
+        public virtual Pais Pai { get; set; }
 
 
         public virtual ICollection<PlanoDeAtividades> ListaDeObjetosDePlanoDeAtividades { get; set; }

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System;
 
 namespace TomarCampApp.Controllers
 {
@@ -154,17 +155,35 @@ namespace TomarCampApp.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
-                    ViewBag.Link = callbackUrl;
-                    return View("DisplayEmail");
+                    // consegui criar um utilizador.
+                    // vou tentar escrever os dados do Pai na BD
+                    bool resultadoCriacaoPai = criaPaiNaBD(model.Pai, user.UserName);
+
+                    if (resultadoCriacaoPai)
+                    {
+                        var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                        var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                        await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
+                        ViewBag.Link = callbackUrl;
+                        return View("DisplayEmail");
+                    }
+                    else
+                    {
+
+                    }
                 }
                 AddErrors(result);
             }
+                    
+                
 
             // If we got this far, something failed, redisplay form
             return View(model);
+        }
+
+        private bool criaPaiNaBD(Pais pai, string userName)
+        {
+            throw new NotImplementedException();
         }
 
         //

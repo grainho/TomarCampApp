@@ -160,7 +160,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
-	<Content Include="imagens\IsabelRodrigues.jpg" />
+    <Content Include="imagens\IsabelRodrigues.jpg" />
     <Content Include="imagens\JoanaRodrigues.jpg" />
     <Content Include="imagens\TeresaRodrigues.jpg" />
     <Content Include="Scripts\bootstrap.js" />
@@ -187,6 +187,7 @@
     <Compile Include="Controllers\FuncionariosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PaisController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
     <Compile Include="Controllers\UserAdminController.cs" />
     <Compile Include="Global.asax.cs">
@@ -252,6 +253,11 @@
     <Content Include="Views\Funcionarios\Details.cshtml" />
     <Content Include="Views\Funcionarios\Edit.cshtml" />
     <Content Include="Views\Funcionarios\Index.cshtml" />
+    <Content Include="Views\Pais\Create.cshtml" />
+    <Content Include="Views\Pais\Delete.cshtml" />
+    <Content Include="Views\Pais\Details.cshtml" />
+    <Content Include="Views\Pais\Edit.cshtml" />
+    <Content Include="Views\Pais\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -274,7 +280,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>2402</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
