@@ -24,7 +24,7 @@
                     <li>@Html.ActionLink("Funcionários", "Index", "Funcionarios")</li>
                     @if (User.IsInRole("Func"))
                     {
-                        <li>@Html.ActionLink("Adicionar Encarregado de Educação", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                        <li>@Html.ActionLink("Encarregados de Educação", "Index", "Pais", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
                     }
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
 

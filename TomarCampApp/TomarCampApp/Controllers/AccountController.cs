@@ -13,6 +13,7 @@ namespace TomarCampApp.Controllers
     [Authorize] // todos os utilizadores devem estar AUTENTICADOS 
     public class AccountController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         public AccountController()
         {
         }
@@ -165,7 +166,7 @@ namespace TomarCampApp.Controllers
                         var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                         await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
                         ViewBag.Link = callbackUrl;
-                        return View("DisplayEmail");
+                        return RedirectToAction("Index", "Pais");
                     }
                     else
                     {
@@ -180,10 +181,14 @@ namespace TomarCampApp.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-
+        
         private bool criaPaiNaBD(Pais pai, string userName)
         {
-            throw new NotImplementedException();
+            pai.Email = userName;
+            db.Pais.Add(pai);
+            db.SaveChanges();
+            return true;
+            //throw new NotImplementedException();
         }
 
         //
