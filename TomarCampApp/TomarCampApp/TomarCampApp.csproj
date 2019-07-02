@@ -184,6 +184,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CriancasController.cs" />
     <Compile Include="Controllers\FuncionariosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -253,11 +254,15 @@
     <Content Include="Views\Funcionarios\Details.cshtml" />
     <Content Include="Views\Funcionarios\Edit.cshtml" />
     <Content Include="Views\Funcionarios\Index.cshtml" />
-    <Content Include="Views\Pais\Create.cshtml" />
     <Content Include="Views\Pais\Delete.cshtml" />
     <Content Include="Views\Pais\Details.cshtml" />
     <Content Include="Views\Pais\Edit.cshtml" />
     <Content Include="Views\Pais\Index.cshtml" />
+    <Content Include="Views\Criancas\Create.cshtml" />
+    <Content Include="Views\Criancas\Delete.cshtml" />
+    <Content Include="Views\Criancas\Details.cshtml" />
+    <Content Include="Views\Criancas\Edit.cshtml" />
+    <Content Include="Views\Criancas\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
