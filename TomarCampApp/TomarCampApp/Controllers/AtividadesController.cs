@@ -10,115 +10,113 @@ using TomarCampApp.Models;
 
 namespace TomarCampApp.Controllers
 {
-    public class CriancasController : Controller
+    public class AtividadesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Criancas
+        // GET: Atividades
         public ActionResult Index()
         {
-            
-            
-            ViewBag.mail = User.Identity.Name;
-            var criancas = db.Criancas.Include(c => c.Pai);
-            return View(criancas.ToList());
+            return View(db.Atividades.ToList());
         }
 
-        // GET: Criancas/Details/5
+        // GET: Atividades/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Criancas criancas = db.Criancas.Find(id);
-            if (criancas == null)
+            Atividades atividades = db.Atividades.Find(id);
+            if (atividades == null)
             {
                 return HttpNotFound();
             }
-            return View(criancas);
+            return View(atividades);
         }
 
-        // GET: Criancas/Create/5
-        public ActionResult Create(int ? id)
+        // GET: Atividades/Create
+        [Authorize(Roles = "Func")]
+        public ActionResult Create()
         {
-            ViewBag.PaiFK = new SelectList(db.Pais, "ID", "Nome", id);
             return View();
         }
 
-        // POST: Criancas/Create/5
+        // POST: Atividades/Create
         // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Nome,Idade,Doencas,NumCC,NIF,PaiFK")] Criancas criancas)
+        [Authorize(Roles = "Func")]
+        public ActionResult Create([Bind(Include = "ID,Nome,dataCriacao,materiais,descricao")] Atividades atividades)
         {
             if (ModelState.IsValid)
             {
-                db.Criancas.Add(criancas);
+                db.Atividades.Add(atividades);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.PaiFK = new SelectList(db.Pais, "ID", "Nome", criancas.PaiFK);
-            return View(criancas);
+            return View(atividades);
         }
 
-        // GET: Criancas/Edit/5
+        // GET: Atividades/Edit/5
+        [Authorize(Roles = "Func")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Criancas criancas = db.Criancas.Find(id);
-            if (criancas == null)
+            Atividades atividades = db.Atividades.Find(id);
+            if (atividades == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.PaiFK = new SelectList(db.Pais, "ID", "Nome", criancas.PaiFK);
-            return View(criancas);
+            return View(atividades);
         }
 
-        // POST: Criancas/Edit/5
+        // POST: Atividades/Edit/5
         // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Nome,Idade,Doencas,NumCC,NIF,PaiFK")] Criancas criancas)
+        [Authorize(Roles = "Func")]
+        public ActionResult Edit([Bind(Include = "ID,Nome,dataCriacao,materiais,descricao")] Atividades atividades)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(criancas).State = EntityState.Modified;
+                db.Entry(atividades).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.PaiFK = new SelectList(db.Pais, "ID", "Nome", criancas.PaiFK);
-            return View(criancas);
+            return View(atividades);
         }
 
-        // GET: Criancas/Delete/5
+        // GET: Atividades/Delete/5
+        [Authorize(Roles = "Func")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Criancas criancas = db.Criancas.Find(id);
-            if (criancas == null)
+            Atividades atividades = db.Atividades.Find(id);
+            if (atividades == null)
             {
                 return HttpNotFound();
             }
-            return View(criancas);
+            return View(atividades);
         }
 
-        // POST: Criancas/Delete/5
+        // POST: Atividades/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Func")]
         public ActionResult DeleteConfirmed(int id)
         {
-            Criancas criancas = db.Criancas.Find(id);
-            db.Criancas.Remove(criancas);
+            Atividades atividades = db.Atividades.Find(id);
+            db.Atividades.Remove(atividades);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
