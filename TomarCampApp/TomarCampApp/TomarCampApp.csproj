@@ -185,6 +185,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AtividadesController.cs" />
+    <Compile Include="Controllers\ConcretizacaosController.cs" />
     <Compile Include="Controllers\CriancasController.cs" />
     <Compile Include="Controllers\FuncionariosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -275,6 +276,11 @@
     <Content Include="Views\PlanoDeAtividades\Details.cshtml" />
     <Content Include="Views\PlanoDeAtividades\Edit.cshtml" />
     <Content Include="Views\PlanoDeAtividades\Index.cshtml" />
+    <Content Include="Views\Concretizacaos\Create.cshtml" />
+    <Content Include="Views\Concretizacaos\Delete.cshtml" />
+    <Content Include="Views\Concretizacaos\Details.cshtml" />
+    <Content Include="Views\Concretizacaos\Edit.cshtml" />
+    <Content Include="Views\Concretizacaos\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

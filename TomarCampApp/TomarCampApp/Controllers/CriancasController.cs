@@ -42,7 +42,8 @@ namespace TomarCampApp.Controllers
         // GET: Criancas/Create/5
         public ActionResult Create(int ? id)
         {
-            ViewBag.PaiFK = new SelectList(db.Pais, "ID", "Nome", id);
+            ViewBag.ListaObjetosDePai = db.Pais.OrderBy(p => p.Nome).ToList();
+            ViewBag.ListaObjetosDePA = db.PlanoDeAtividades.OrderBy(pa => pa.Turno).ToList();
             return View();
         }
 
@@ -51,8 +52,52 @@ namespace TomarCampApp.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Nome,Idade,Doencas,NumCC,NIF,PaiFK")] Criancas criancas)
+        public ActionResult Create([Bind(Include = "ID,Nome,Idade,Doencas,NumCC,NIF")] Criancas criancas, string[] opcoesEscolhidasDePA, string[] opcoesEscolhidasDePais)
         {
+
+            /// avalia se o array com a lista das escolhas de objetos de PlanosDeAtividades associados ao objeto do tipo Criancas
+            /// é nula, ou não.
+            /// Só poderá avanção se NÃO for nula
+            if (opcoesEscolhidasDePA == null)
+            {
+                ModelState.AddModelError("", "Necessita escolher pelo menos um PlanoDeAtividades para associar à criança.");
+                // gerar a lista de objetos de PA que podem ser associados a Criança
+                ViewBag.ListaObjetosDePA = db.PlanoDeAtividades.OrderBy(pa => pa.Turno).ToList();
+                // devolver controlo à View
+                return View(criancas);
+            }
+
+            
+            List<PlanoDeAtividades> listaDeObjetosDePAEscolhidos = new List<PlanoDeAtividades>();
+            foreach (string item in opcoesEscolhidasDePA)
+            {
+                
+                PlanoDeAtividades pa = db.PlanoDeAtividades.Find(Convert.ToInt32(item));
+                // adicioná-lo à lista
+                listaDeObjetosDePAEscolhidos.Add(pa);
+            }
+
+            // adicionar a lista ao objeto de crianças
+            criancas.ListaDeObjetosDePlanoDeAtividades = listaDeObjetosDePAEscolhidos;
+
+
+            if (opcoesEscolhidasDePais == null)
+            {
+                ModelState.AddModelError("", "Necessita escolher o pai para associar à criança.");
+                
+                ViewBag.ListaObjetosDePai = db.Pais.OrderBy(p => p.Nome).ToList();
+                // devolver controlo à View
+                return View(criancas);
+            }
+
+            // criar um pai
+            Pais pai =db.Pais.Find(Convert.ToInt32(opcoesEscolhidasDePais.First())) ;
+            
+
+            // adicionar o ID do pai ao PaiFK
+            criancas.PaiFK = pai.ID;
+
+
             if (ModelState.IsValid)
             {
                 db.Criancas.Add(criancas);
@@ -60,7 +105,7 @@ namespace TomarCampApp.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.PaiFK = new SelectList(db.Pais, "ID", "Nome", criancas.PaiFK);
+            
             return View(criancas);
         }
 
