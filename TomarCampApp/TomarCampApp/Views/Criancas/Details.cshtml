@@ -59,6 +59,23 @@
         </dd>
 
     </dl>
+
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ListaDeObjetosDePlanoDeAtividades.First().Turno)
+            </th>
+        </tr>
+        @foreach (var item in Model.ListaDeObjetosDePlanoDeAtividades)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.Turno, "Details", "PlanoDeAtividades", new { id = item.ID }, null)
+                </td>
+            </tr>
+        }
+    </table>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |

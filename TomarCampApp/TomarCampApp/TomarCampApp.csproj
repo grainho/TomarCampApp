@@ -190,6 +190,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PaisController.cs" />
+    <Compile Include="Controllers\PlanoDeAtividadesController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
     <Compile Include="Controllers\UserAdminController.cs" />
     <Compile Include="Global.asax.cs">
@@ -269,6 +270,11 @@
     <Content Include="Views\Atividades\Details.cshtml" />
     <Content Include="Views\Atividades\Edit.cshtml" />
     <Content Include="Views\Atividades\Index.cshtml" />
+    <Content Include="Views\PlanoDeAtividades\Create.cshtml" />
+    <Content Include="Views\PlanoDeAtividades\Delete.cshtml" />
+    <Content Include="Views\PlanoDeAtividades\Details.cshtml" />
+    <Content Include="Views\PlanoDeAtividades\Edit.cshtml" />
+    <Content Include="Views\PlanoDeAtividades\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
