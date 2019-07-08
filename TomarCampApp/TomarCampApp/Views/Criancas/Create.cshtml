@@ -63,8 +63,8 @@
                 {
                     if (@item.Email == User.Identity.Name)
                     {
-                        <input type="checkbox" name="opcoesEscolhidasDePais" value="@item.ID" @selecionado /><span>@item.Nome</span>
-                        <br />
+                    <input type="checkbox" name="opcoesEscolhidasDePais" value="@item.ID" @selecionado /> @item.Nome
+                    <br />
                     }
                 }
 
