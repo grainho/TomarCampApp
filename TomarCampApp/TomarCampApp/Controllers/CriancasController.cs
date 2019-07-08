@@ -42,7 +42,9 @@ namespace TomarCampApp.Controllers
         // GET: Criancas/Create/5
         public ActionResult Create(int ? id)
         {
+            Session["pai"] = id;
             ViewBag.ListaObjetosDePai = db.Pais.OrderBy(p => p.Nome).ToList();
+            ViewBag.PaiID = id;
             ViewBag.ListaObjetosDePA = db.PlanoDeAtividades.OrderBy(pa => pa.Turno).ToList();
             return View();
         }
@@ -63,6 +65,8 @@ namespace TomarCampApp.Controllers
                 ModelState.AddModelError("", "Necessita escolher pelo menos um PlanoDeAtividades para associar à criança.");
                 // gerar a lista de objetos de PA que podem ser associados a Criança
                 ViewBag.ListaObjetosDePA = db.PlanoDeAtividades.OrderBy(pa => pa.Turno).ToList();
+                ViewBag.ListaObjetosDePai = db.Pais.OrderBy(p => p.Nome).ToList();
+                ViewBag.PaiID = Session["pai"];
                 // devolver controlo à View
                 return View(criancas);
             }
@@ -86,6 +90,8 @@ namespace TomarCampApp.Controllers
                 ModelState.AddModelError("", "Necessita escolher o pai para associar à criança.");
                 
                 ViewBag.ListaObjetosDePai = db.Pais.OrderBy(p => p.Nome).ToList();
+                ViewBag.ListaObjetosDePA = db.PlanoDeAtividades.OrderBy(pa => pa.Turno).ToList();
+                ViewBag.PaiID = Session["pai"];
                 // devolver controlo à View
                 return View(criancas);
             }
@@ -102,7 +108,7 @@ namespace TomarCampApp.Controllers
             {
                 db.Criancas.Add(criancas);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Pais", new { id = Session["pai"] });
             }
 
             

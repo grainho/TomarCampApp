@@ -61,7 +61,7 @@
                 @{ string selecionado = "";}
                 @foreach (var item in ViewBag.ListaObjetosDePai)
                 {
-                    if (@item.Email == User.Identity.Name)
+                    if (@item.ID == ViewBag.PaiID)
                     {
                     <input type="checkbox" name="opcoesEscolhidasDePais" value="@item.ID" @selecionado /> @item.Nome
                     <br />
