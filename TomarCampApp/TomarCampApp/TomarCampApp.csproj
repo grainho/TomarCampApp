@@ -160,6 +160,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
+    <Content Include="imagens\IsabelRodrigues.jpg" />
+    <Content Include="imagens\JoanaRodrigues.jpg" />
+    <Content Include="imagens\TeresaRodrigues.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -182,10 +185,13 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AtividadesController.cs" />
+    <Compile Include="Controllers\ConcretizacaosController.cs" />
+    <Compile Include="Controllers\CriancasController.cs" />
     <Compile Include="Controllers\FuncionariosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PaisController.cs" />
+    <Compile Include="Controllers\PlanoDeAtividadesController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
     <Compile Include="Controllers\UserAdminController.cs" />
     <Compile Include="Global.asax.cs">
@@ -246,6 +252,35 @@
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Account\DisplayEmail.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Funcionarios\Create.cshtml" />
+    <Content Include="Views\Funcionarios\Delete.cshtml" />
+    <Content Include="Views\Funcionarios\Details.cshtml" />
+    <Content Include="Views\Funcionarios\Edit.cshtml" />
+    <Content Include="Views\Funcionarios\Index.cshtml" />
+    <Content Include="Views\Pais\Delete.cshtml" />
+    <Content Include="Views\Pais\Details.cshtml" />
+    <Content Include="Views\Pais\Edit.cshtml" />
+    <Content Include="Views\Pais\Index.cshtml" />
+    <Content Include="Views\Criancas\Create.cshtml" />
+    <Content Include="Views\Criancas\Delete.cshtml" />
+    <Content Include="Views\Criancas\Details.cshtml" />
+    <Content Include="Views\Criancas\Edit.cshtml" />
+    <Content Include="Views\Criancas\Index.cshtml" />
+    <Content Include="Views\Atividades\Create.cshtml" />
+    <Content Include="Views\Atividades\Delete.cshtml" />
+    <Content Include="Views\Atividades\Details.cshtml" />
+    <Content Include="Views\Atividades\Edit.cshtml" />
+    <Content Include="Views\Atividades\Index.cshtml" />
+    <Content Include="Views\PlanoDeAtividades\Create.cshtml" />
+    <Content Include="Views\PlanoDeAtividades\Delete.cshtml" />
+    <Content Include="Views\PlanoDeAtividades\Details.cshtml" />
+    <Content Include="Views\PlanoDeAtividades\Edit.cshtml" />
+    <Content Include="Views\PlanoDeAtividades\Index.cshtml" />
+    <Content Include="Views\Concretizacaos\Create.cshtml" />
+    <Content Include="Views\Concretizacaos\Delete.cshtml" />
+    <Content Include="Views\Concretizacaos\Details.cshtml" />
+    <Content Include="Views\Concretizacaos\Edit.cshtml" />
+    <Content Include="Views\Concretizacaos\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -255,9 +290,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Atividades\" />
-    <Folder Include="Views\Funcionarios\" />
-    <Folder Include="Views\Pais\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -270,7 +302,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>2402</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

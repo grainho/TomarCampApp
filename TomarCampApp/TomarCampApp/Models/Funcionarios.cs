@@ -18,6 +18,7 @@ namespace TomarCampApp.Models
 
         public int ID { get; set; }
 
+
         public string Nome { get; set; }
 
         public string Foto { get; set; }
@@ -25,5 +26,7 @@ namespace TomarCampApp.Models
 
 
         public virtual ICollection<Concretizacao> ListaDeObjetosDeConcretizacao { get; set; }
+
+        
     }
 }

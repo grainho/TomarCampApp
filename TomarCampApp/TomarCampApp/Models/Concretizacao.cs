@@ -15,7 +15,7 @@ namespace TomarCampApp.Models
 
         }
 
-        public int Id { get; set; }
+        public int ID { get; set; }
 
         public DateTime dataInicioConcretizacao { get; set; }
 
@@ -26,7 +26,7 @@ namespace TomarCampApp.Models
 
         [ForeignKey("Atividade")]
         public int AtividadeFK { get; set; }
-        public Atividades Atividade { get; set; }
+        public virtual Atividades Atividade { get; set; }
 
         public virtual ICollection<Funcionarios> ListaDeObjetosDeFuncionario { get; set; }
 

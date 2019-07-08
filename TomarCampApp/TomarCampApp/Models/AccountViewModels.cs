@@ -79,6 +79,8 @@ namespace TomarCampApp.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        public Pais Pai { get; set; }
     }
 
     public class ResetPasswordViewModel

@@ -6,12 +6,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System;
 
 namespace TomarCampApp.Controllers
 {
-    [Authorize]
+    [Authorize] // todos os utilizadores devem estar AUTENTICADOS 
     public class AccountController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         public AccountController()
         {
         }
@@ -38,7 +40,8 @@ namespace TomarCampApp.Controllers
         //
         // GET: /Account/Login
         [HttpGet]
-        [AllowAnonymous]
+        [AllowAnonymous]//deixa cair a obrigatoriedade da Autenticação
+        //pq está mais perto do método
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
@@ -153,17 +156,40 @@ namespace TomarCampApp.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
-                    ViewBag.Link = callbackUrl;
-                    return View("DisplayEmail");
+                    // consegui criar um utilizador.
+                    // vou tentar escrever os dados do Pai na BD
+                    bool resultadoCriacaoPai = criaPaiNaBD(model.Pai, user.UserName);
+
+                    if (resultadoCriacaoPai)
+                    {
+                        var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                        var result1 = UserManager.AddToRole(user.Id, "Pai");
+                        var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                        await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
+                        ViewBag.Link = callbackUrl;
+                        return RedirectToAction("Index", "Pais");
+                    }
+                    else
+                    {
+
+                    }
                 }
                 AddErrors(result);
             }
+                    
+                
 
             // If we got this far, something failed, redisplay form
             return View(model);
+        }
+        
+        private bool criaPaiNaBD(Pais pai, string userName)
+        {
+            pai.Email = userName;
+            db.Pais.Add(pai);
+            db.SaveChanges();
+            return true;
+            //throw new NotImplementedException();
         }
 
         //

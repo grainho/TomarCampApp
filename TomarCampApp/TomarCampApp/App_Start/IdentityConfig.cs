@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Threading.Tasks;
 using System.Web;
+using TomarCampApp.Models;
 
 namespace TomarCampApp.Models
 {
@@ -112,6 +113,7 @@ namespace TomarCampApp.Models
 
         //Create User=Admin@Admin.com with password=Admin@123456 in the Admin role        
         public static void InitializeIdentityForEF(ApplicationDbContext db) {
+            /**
             var userManager = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
             var roleManager = HttpContext.Current.GetOwinContext().Get<ApplicationRoleManager>();
             const string name = "admin@example.com";
@@ -136,7 +138,7 @@ namespace TomarCampApp.Models
             var rolesForUser = userManager.GetRoles(user.Id);
             if (!rolesForUser.Contains(role.Name)) {
                 var result = userManager.AddToRole(user.Id, role.Name);
-            }
+            */}
         }
     }
 
@@ -155,4 +157,3 @@ namespace TomarCampApp.Models
             return new ApplicationSignInManager(context.GetUserManager<ApplicationUserManager>(), context.Authentication);
         }
     }
-}

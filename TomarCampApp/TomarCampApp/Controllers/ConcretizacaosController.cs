@@ -10,113 +10,112 @@ using TomarCampApp.Models;
 
 namespace TomarCampApp.Controllers
 {
-    public class AtividadesController : Controller
+    public class ConcretizacaosController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Atividades
+        // GET: Concretizacaos
         public ActionResult Index()
         {
-            return View(db.Atividades.ToList());
+            var concretizacao = db.Concretizacao.Include(c => c.Atividade);
+            return View(concretizacao.ToList());
         }
 
-        // GET: Atividades/Details/5
+        // GET: Concretizacaos/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Atividades atividades = db.Atividades.Find(id);
-            if (atividades == null)
+            Concretizacao concretizacao = db.Concretizacao.Find(id);
+            if (concretizacao == null)
             {
                 return HttpNotFound();
             }
-            return View(atividades);
+            return View(concretizacao);
         }
 
-        // GET: Atividades/Create
-        [Authorize(Roles = "Func")]
+        // GET: Concretizacaos/Create
         public ActionResult Create()
         {
+            ViewBag.AtividadeFK = new SelectList(db.Atividades, "ID", "Nome");
             return View();
         }
 
-        // POST: Atividades/Create
+        // POST: Concretizacaos/Create
         // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Func")]
-        public ActionResult Create([Bind(Include = "ID,Nome,dataCriacao,materiais,descricao")] Atividades atividades)
+        public ActionResult Create([Bind(Include = "ID,dataInicioConcretizacao,dataFimConcretizacao,local,AtividadeFK")] Concretizacao concretizacao)
         {
             if (ModelState.IsValid)
             {
-                db.Atividades.Add(atividades);
+                db.Concretizacao.Add(concretizacao);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(atividades);
+            ViewBag.AtividadeFK = new SelectList(db.Atividades, "ID", "Nome", concretizacao.AtividadeFK);
+            return View(concretizacao);
         }
 
-        // GET: Atividades/Edit/5
-        [Authorize(Roles = "Func")]
+        // GET: Concretizacaos/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Atividades atividades = db.Atividades.Find(id);
-            if (atividades == null)
+            Concretizacao concretizacao = db.Concretizacao.Find(id);
+            if (concretizacao == null)
             {
                 return HttpNotFound();
             }
-            return View(atividades);
+            ViewBag.AtividadeFK = new SelectList(db.Atividades, "ID", "Nome", concretizacao.AtividadeFK);
+            return View(concretizacao);
         }
 
-        // POST: Atividades/Edit/5
+        // POST: Concretizacaos/Edit/5
         // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Func")]
-        public ActionResult Edit([Bind(Include = "ID,Nome,dataCriacao,materiais,descricao")] Atividades atividades)
+        public ActionResult Edit([Bind(Include = "ID,dataInicioConcretizacao,dataFimConcretizacao,local,AtividadeFK")] Concretizacao concretizacao)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(atividades).State = EntityState.Modified;
+                db.Entry(concretizacao).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(atividades);
+            ViewBag.AtividadeFK = new SelectList(db.Atividades, "ID", "Nome", concretizacao.AtividadeFK);
+            return View(concretizacao);
         }
 
-        // GET: Atividades/Delete/5
-        [Authorize(Roles = "Func")]
+        // GET: Concretizacaos/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Atividades atividades = db.Atividades.Find(id);
-            if (atividades == null)
+            Concretizacao concretizacao = db.Concretizacao.Find(id);
+            if (concretizacao == null)
             {
                 return HttpNotFound();
             }
-            return View(atividades);
+            return View(concretizacao);
         }
 
-        // POST: Atividades/Delete/5
+        // POST: Concretizacaos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Func")]
         public ActionResult DeleteConfirmed(int id)
         {
-            Atividades atividades = db.Atividades.Find(id);
-            db.Atividades.Remove(atividades);
+            Concretizacao concretizacao = db.Concretizacao.Find(id);
+            db.Concretizacao.Remove(concretizacao);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

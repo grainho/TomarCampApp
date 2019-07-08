@@ -10,113 +10,107 @@ using TomarCampApp.Models;
 
 namespace TomarCampApp.Controllers
 {
-    public class AtividadesController : Controller
+    public class PlanoDeAtividadesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Atividades
+        // GET: PlanoDeAtividades
         public ActionResult Index()
         {
-            return View(db.Atividades.ToList());
+            return View(db.PlanoDeAtividades.ToList());
         }
 
-        // GET: Atividades/Details/5
+        // GET: PlanoDeAtividades/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Atividades atividades = db.Atividades.Find(id);
-            if (atividades == null)
+            PlanoDeAtividades planoDeAtividades = db.PlanoDeAtividades.Find(id);
+            if (planoDeAtividades == null)
             {
                 return HttpNotFound();
             }
-            return View(atividades);
+            return View(planoDeAtividades);
         }
 
-        // GET: Atividades/Create
-        [Authorize(Roles = "Func")]
+        // GET: PlanoDeAtividades/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Atividades/Create
+        // POST: PlanoDeAtividades/Create
         // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Func")]
-        public ActionResult Create([Bind(Include = "ID,Nome,dataCriacao,materiais,descricao")] Atividades atividades)
+        public ActionResult Create([Bind(Include = "ID,Turno,dataInicioPA,dataFimPA")] PlanoDeAtividades planoDeAtividades)
         {
             if (ModelState.IsValid)
             {
-                db.Atividades.Add(atividades);
+                db.PlanoDeAtividades.Add(planoDeAtividades);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(atividades);
+            return View(planoDeAtividades);
         }
 
-        // GET: Atividades/Edit/5
-        [Authorize(Roles = "Func")]
+        // GET: PlanoDeAtividades/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Atividades atividades = db.Atividades.Find(id);
-            if (atividades == null)
+            PlanoDeAtividades planoDeAtividades = db.PlanoDeAtividades.Find(id);
+            if (planoDeAtividades == null)
             {
                 return HttpNotFound();
             }
-            return View(atividades);
+            return View(planoDeAtividades);
         }
 
-        // POST: Atividades/Edit/5
+        // POST: PlanoDeAtividades/Edit/5
         // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Func")]
-        public ActionResult Edit([Bind(Include = "ID,Nome,dataCriacao,materiais,descricao")] Atividades atividades)
+        public ActionResult Edit([Bind(Include = "ID,Turno,dataInicioPA,dataFimPA")] PlanoDeAtividades planoDeAtividades)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(atividades).State = EntityState.Modified;
+                db.Entry(planoDeAtividades).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(atividades);
+            return View(planoDeAtividades);
         }
 
-        // GET: Atividades/Delete/5
-        [Authorize(Roles = "Func")]
+        // GET: PlanoDeAtividades/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Atividades atividades = db.Atividades.Find(id);
-            if (atividades == null)
+            PlanoDeAtividades planoDeAtividades = db.PlanoDeAtividades.Find(id);
+            if (planoDeAtividades == null)
             {
                 return HttpNotFound();
             }
-            return View(atividades);
+            return View(planoDeAtividades);
         }
 
-        // POST: Atividades/Delete/5
+        // POST: PlanoDeAtividades/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Func")]
         public ActionResult DeleteConfirmed(int id)
         {
-            Atividades atividades = db.Atividades.Find(id);
-            db.Atividades.Remove(atividades);
+            PlanoDeAtividades planoDeAtividades = db.PlanoDeAtividades.Find(id);
+            db.PlanoDeAtividades.Remove(planoDeAtividades);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

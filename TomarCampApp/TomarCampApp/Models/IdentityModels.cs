@@ -39,7 +39,7 @@ namespace TomarCampApp.Models
         {
             return new ApplicationDbContext();
         }
-        public virtual DbSet<Funcionarios> Funcionario { get; set; }
+        public virtual DbSet<Funcionarios> Funcionarios { get; set; }
         public virtual DbSet<Atividades> Atividades { get; set; }
         public virtual DbSet<PlanoDeAtividades> PlanoDeAtividades { get; set; }
         public virtual DbSet<Concretizacao> Concretizacao { get; set; }
